@@ -4,20 +4,23 @@
 
 //获取文本框中的值,并确保文本框不为空
 
-$num1 = TRUE;
-$num2 = TRUE;
-$sum  = 0;
-$message = "";
+$num1=true;
+$num2=true;
+$message="";
 
-if(isset($_GET["submit"])){
+if(isset($_GET["sub"])){
 
-	if(isset($_GET["num1"])==""){
-		$num1 = FALSE;
-		$message.="xxxxxxxxxxxxxxxxxxxxxxxx";
+	if(($_GET["num1"])==""){
+		$num1=false;
+		$message.="第一个数不能为空";
 	}
-	echo $num1;
-         if($num1 && $num2){
-      
+	if(($_GET["num2"])==""){
+		$num1=false;
+		$message.="第二个数不能为空";
+	}
+       
+	if($num1 && $num2){
+      $sum = 0;
         switch($_GET["ys"]){
               
 	case "+":
@@ -94,25 +97,25 @@ span.fs { color:red;font-weight:700;}
   </td>
   <td class="w">请输入第2个数：</td>
   <td><input type="text"   name="num2" value="<?php echo $_GET["num2"];?>"></td>
-  <td><input type="submit" name="submit" value="计算" ></td>
+  <td><input type="submit" name="sub" value="计算" ></td>
   <td><input type="reset"  name="reset" value="重置" ></td>
 </tr>
 
 <?php
- if(isset($_GET["submit"])){
-	 if($num1&&$num2){
-		 echo "真";
-		 echo $num1;
-	 }else{
-	 echo "假";
-	 }
-	                            
-	                        echo '<tr>
+ if(isset($_GET["sub"])){
+                                 if($num1 && $num2){
+	                         echo '<tr>
 		                <td colspan="4">该计算结果为：'.$_GET["num1"].''.$_GET["ys"].''.$_GET["num2"].'='.$sum.'</td>
 				</tr>';
-				     
+				 } else {
+				   echo '<tr>
+		                <td colspan="4">提示信息：'.$message.'</td>
+				</tr>';
+				 }
 	                             }
 
+
+ 
 ?>
 
 </table>
